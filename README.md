@@ -111,6 +111,6 @@ Disable unnecessary logging on Windows -- *be aware doing the following will dis
 - To revert or begin logging again, repeat the steps for **Enable All Tasks History**
 
 ## Credits
-Original codebase from [Stephan Linke | Paessler AG](https://pastebin.com/SLdtB3gX)
+Original codebase from [Stephan Linke | Paessler AG](https://kb.paessler.com/en/topic/67869-auto-starting-services)
 
 My modifications are licensed under GPL 3
