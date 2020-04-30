@@ -39,13 +39,15 @@ PRTG:
 ## Install / Setup
 - Assess **prtg-autoservices-monitor.ps1** code to ensure nothing bad will be done to your system & no data will be stolen upon running it
 - If all checks out, add **prtg-autoservices-monitor.ps1** to your target system, somewhere like `C:\Scripts` is usually a good spot
+
+On the PRTG dashboard:
 - On the device (server) you want to monitor these services for, locate it's device (Search > enter name > click to it > + Add Sensor)
 - Search for **HTTP Push Data Advanced**
- - Sensor Name: Auto-Start Services
- - SSL Settings: HTTPS
- - Request Method: POST
- - No incoming data: Switch to unknown
- - Create
+  - Sensor Name: Auto-Start Services
+  - SSL Settings: HTTPS
+  - Request Method: POST
+  - No incoming data: Switch to unknown
+  - Create
 
  Once it's created, you need to go to the device/server's overview and you'll see **Auto-Start** services listed as a new sensor.  
  - Click to it and go to its **Settings**
@@ -60,34 +62,34 @@ Using the Windows Task Scheduler GUI
 
 
 - **General tab:**
- - Name: `PRTG Service Monitor`
- - Description: `Monitor autostart services and report back to PRTG.`
- - When running the task, use the following user account: click **Change User or Group** > ensure **From this location:** is set to your local machine (not an AD domain) > type `SYSTEM` under the *Enter the object name to select* > click OK
- - [x] Run with highest privileges
- - Configure for: `Windows Server 2016`
+  - Name: `PRTG Service Monitor`
+  - Description: `Monitor autostart services and report back to PRTG.`
+  - When running the task, use the following user account: click **Change User or Group** > ensure **From this location:** is set to your local machine (not an AD domain) > type `SYSTEM` under the *Enter the object name to select* > click OK
+  - [x] Run with highest privileges
+  - Configure for: `Windows Server 2016`
 
 
 - **Triggers tab:**
- - Click **New**
- - [x] Daily
- - Recur every `1` days
- - Repeat task every: `1 minute` (or your preferred duration)
- - for a duration of: `Indefinitely`
- - [x] Enabled
+  - Click **New**
+  - [x] Daily
+  - Recur every `1` days
+  - Repeat task every: `1 minute` (or your preferred duration)
+  - for a duration of: `Indefinitely`
+  - [x] Enabled
 
 
 - **Actions tab:**
- - Click **New**
- - Program/script: `powershell`
- - Add arguments: `C:\Scripts\prtg-autoservices-monitor.ps1` (adjust path accordingly, if you put it elsewhere)
+  - Click **New**
+  - Program/script: `powershell`
+  - Add arguments: `C:\Scripts\prtg-autoservices-monitor.ps1` (adjust path accordingly, if you put it elsewhere)
 
 
 - **Conditions tab:**
- - Uncheck all
+  - Uncheck all
 
 
 - **Settings tab:**
- - Tick all & set preferred durations; leave *If the task is not scheduled to run again, delete it after* **blank/unchecked**
+  - Tick all & set preferred durations; leave *If the task is not scheduled to run again, delete it after* **blank/unchecked**
 
 ## Customizing
 **Services you don't care about**; anything that doesn't have the **Startup Type** of Automatic or Automatic (Delayed) is ignored by default - sometimes Windows likes to add services that aren't integral as automatic startup, so that's mostly what you'd add here.
