@@ -1,5 +1,5 @@
 # license GPL3 https://github.com/angela-d/prtg-autoservices-monitor
-# original script base from Stephan Linke | Paessler AG https://pastebin.com/SLdtB3gX
+# original script base from Stephan Linke | Paessler AG https://kb.paessler.com/en/topic/67869-auto-starting-services
 
 # config
 $prtgUrl    = 'https://prtg.example.com'
