@@ -51,7 +51,9 @@ On the PRTG dashboard:
 
  Once it's created, you need to go to the device/server's overview and you'll see **Auto-Start** services listed as a new sensor.  
  - Click to it and go to its **Settings**
+ - Set the interval to *15 minutes*
  - You'll see the **Identification Token** field populated, copy it and paste into the `$prtgToken` of the **prtg-autoservices-monitor.ps1** script
+ - Save the sensor changes
  - Modify the `$prtgUrl` variable and set your PRTG's instance URL
  - Save
 
@@ -73,7 +75,7 @@ Using the Windows Task Scheduler GUI
   - Click **New**
   - [x] Daily
   - Recur every `1` days
-  - Repeat task every: `1 minute` (or your preferred duration)
+  - Repeat task every: `30 minutes` (or your preferred duration - don't do too frequent or Powershell information logs will bloat/write excessively)
   - for a duration of: `Indefinitely`
   - [x] Enabled
 
@@ -99,16 +101,28 @@ Using the Windows Task Scheduler GUI
 - `$forceStart` - This variable operates the same way as `$ignore`
 
 **Debugging/testing** or survey what's being sent to PRTG
-- `$debug` - Set to `1` and check the path specified in `$logPath` for your output
+- `$debug` - Set to `1` and check the path specified in `$logPath` for your output (make sure the path exists!)
 
 ## Caveats
 `$debug` is noisy and won't clean up after itself when you switch it off, don't use it unless you're actively trying to test this script!
+
+## Troubleshooting
+If you run the script in Powershell ISE for the first time and see:
+> Invoke-RestMethod : Unable to connect to the remote server
+At C:\Scripts\prtg-autoservices-monitor.ps1
+
+Check your firewall rules if using this script across subnets.  Ensure the following is set in your firewall:
+- Source: Target server
+- Destination: PRTG server
+- Port: 5051
 
 ## Optional/Disable Noisy Task Logs
 Disable unnecessary logging on Windows -- *be aware doing the following will disable ALL tasks' history from being logged* until you toggle it back on.
 - Open Task Scheduler as admin/elevated
 - In the right pane, you should see a **Disable All Tasks History** button
 - To revert or begin logging again, repeat the steps for **Enable All Tasks History**
+
+It doesn't appear possible to quiet the **Information** logs for Powershell (Event ID 40962, 40961, 53504) - so if you have the task running every minute this garbage is going to fill up and write constantly.
 
 ## Credits
 Original codebase from [Stephan Linke | Paessler AG](https://kb.paessler.com/en/topic/67869-auto-starting-services)
