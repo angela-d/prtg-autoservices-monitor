@@ -104,6 +104,12 @@ Using the Windows Task Scheduler GUI
 ## Caveats
 `$debug` is noisy and won't clean up after itself when you switch it off, don't use it unless you're actively trying to test this script!
 
+## Optional/Disable Noisy Task Logs
+Disable unnecessary logging on Windows -- *be aware doing the following will disable ALL tasks' history from being logged* until you toggle it back on.
+- Open Task Scheduler as admin/elevated
+- In the right pane, you should see a **Disable All Tasks History** button
+- To revert or begin logging again, repeat the steps for **Enable All Tasks History**
+
 ## Credits
 Original codebase from [Stephan Linke | Paessler AG](https://pastebin.com/SLdtB3gX)
 
