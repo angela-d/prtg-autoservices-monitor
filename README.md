@@ -37,8 +37,8 @@ PRTG:
 
 
 ## Install / Setup
-- Assess **prtg-autostart-monitor.ps1** code to ensure nothing bad will be done to your system & no data will be stolen upon running it
-- If all checks out, add **prtg-autostart-monitor.ps1** to your target system, somewhere like `C:\Scripts` is usually a good spot
+- Assess **prtg-autoservices-monitor.ps1** code to ensure nothing bad will be done to your system & no data will be stolen upon running it
+- If all checks out, add **prtg-autoservices-monitor.ps1** to your target system, somewhere like `C:\Scripts` is usually a good spot
 - On the device (server) you want to monitor these services for, locate it's device (Search > enter name > click to it > + Add Sensor)
 - Search for **HTTP Push Data Advanced**
  - Sensor Name: Auto-Start Services
